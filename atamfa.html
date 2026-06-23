@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Shoes Collection | Salameenah Concept</title>
+    <title>Atamfa Collection | Salameenah Concept</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -146,7 +146,7 @@
         .social-icon:hover { background: #c8a45c; color: #1a1a1a; transform: translateY(-3px); }
 
 
-       @media (min-width: 1440px) {
+          @media (min-width: 1440px) {
             .hero-banner { 
                 height: 85vh;
                 min-height: 700px;
@@ -182,6 +182,8 @@
              } 
         }
 
+
+
         @media (max-width: 768px) {
             .products-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; padding: 0 1rem; }
             .hero-content h1 { font-size: 2rem; }
@@ -204,12 +206,14 @@
     <div class="cart-badge" id="cartBadge"><i class="fas fa-shopping-basket"></i><span class="cart-count" id="cartCount">0</span></div>
     <header class="header">
         <div class="header-container">
+            <a href="index.html" class="logo"><div class="logo-icon">S</div><span>Salameenah Concept</span></a>
+            <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Home</a>
         </div>
     </header>
     
     <section class="hero-banner">
         <div class="slideshow-container">
-            <div class="slide active" style="background-image: url('shoes-hero1.jpg');"><div class="hero-content"><h1>Premium Footwear</h1><p>Step out in style and comfort</p></div></div>
+            <div class="slide active" style="background-image: url('atamfa-hero1.jpg');"><div class="hero-content"><h1>Atamfa Collection</h1><p>Authentic African traditional attire</p></div></div>
         </div>
     </section>
     
@@ -228,7 +232,7 @@
         </div>
     </div>
     
-         <footer class="footer">
+      <footer class="footer">
         <div class="footer-content">
             <div class="social-icons">
                 <a href="https://www.instagram.com/salameenah.concept/" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
@@ -237,7 +241,16 @@
     </div>
     </footer> 
     
-    <div class="lightbox" id="lightbox"><span class="lightbox-close">&times;</span><img id="lightbox-img" src=""><div class="lightbox-caption" id="lightbox-caption"></div><div class="zoom-controls"><button class="zoom-btn" id="zoomInBtn"><i class="fas fa-search-plus"></i></button><button class="zoom-btn" id="zoomOutBtn"><i class="fas fa-search-minus"></i></button><button class="zoom-btn" id="zoomResetBtn"><i class="fas fa-undo-alt"></i></button></div></div>
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <img id="lightbox-img" src="" alt="">
+        <div class="lightbox-caption" id="lightbox-caption"></div>
+        <div class="zoom-controls">
+            <button class="zoom-btn" id="zoomInBtn"><i class="fas fa-search-plus"></i></button>
+            <button class="zoom-btn" id="zoomOutBtn"><i class="fas fa-search-minus"></i></button>
+            <button class="zoom-btn" id="zoomResetBtn"><i class="fas fa-undo-alt"></i></button>
+        </div>
+    </div>
     
     <div class="modal-overlay" id="checkoutModal">
         <div class="checkout-modal">
@@ -256,6 +269,7 @@
                         </select>
                     </div>
                     
+                    <!-- Bank Transfer Payment Details Section -->
                     <div id="paymentDetailsBox" class="payment-details-box" style="display: none;">
                         <h4><i class="fas fa-university"></i> Bank Transfer Details</h4>
                         <div class="bank-details">
@@ -283,7 +297,7 @@
         // ===== CONFIGURATION - REPLACE WITH YOUR DEPLOYED GOOGLE SCRIPT URL =====
         const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwZ8_JF9ToPvEY-iQLkKNx_2XIb46mjfCz9CmlnV2IbWxEwDHJ4LZzSDPDCo5XjwMMv/exec";
         const GOOGLE_SHEETS_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vS4sl15pExcCu6LudOLLqK4clokRqrZjqBThg-dygvDbceOSHG_nn5tn9lBYoyYvMIdHThCCvuLapv9/pub?output=csv";
-        const currentPage = 'shoes';
+        const currentPage = 'atamfa';
         const WHATSAPP_NUMBER = "+2348065512725";
         
         let currentProducts = [];
@@ -317,7 +331,7 @@
                 `*Items Ordered:*%0A${itemsList || 'No items'}%0A%0A` +
                 `*Total Amount: ₦${total.toLocaleString()}*%0A%0A` +
                 `*ATTACH YOUR PAYMENT PROOF/SCREENSHOT HERE*%0A%0A` +
-                `Thank you! We will confirm your payment within 2 hours.`;
+                `Thank you! We will confirm your payment within few minutes.`;
             
             const whatsappBtn = document.getElementById('whatsappProofBtn');
             if (whatsappBtn) {
@@ -357,7 +371,7 @@
         async function loadProductsFromSheet() {
             if (!GOOGLE_SHEETS_CSV_URL) { showNotification('Add Google Sheets URL'); return []; }
             try {
-                showNotification('📡 Loading products...');
+                showNotification('Loading products...');
                 const response = await fetch(GOOGLE_SHEETS_CSV_URL);
                 const csvText = await response.text();
                 const rows = csvText.split('\n');
@@ -394,7 +408,7 @@
                 }
                 if (products.length > 0) showNotification(`Loaded ${products.length} products`);
                 return products;
-            } catch (error) { showNotification(' Error loading products.'); return []; }
+            } catch (error) { showNotification('⚠️ Error loading products.'); return []; }
         }
         
         function renderProducts(productsArray) {

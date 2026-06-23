@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Shoes Collection | Salameenah Concept</title>
+    <title>Lace Collection | Salameenah Concept</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        /* Same CSS as fabrics.html - identical styles */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Segoe UI', 'Inter', system-ui, sans-serif; background: #faf7f2; color: #1a1a1a; line-height: 1.6; overflow-x: hidden; }
         .header { background: #1a1a1a; color: white; padding: 1rem 2rem; position: sticky; top: 0; z-index: 100; }
@@ -128,7 +129,6 @@
         .loading-spinner { display: inline-block; width: 18px; height: 18px; border: 2px solid rgba(255,255,255,0.3); border-radius: 50%; border-top-color: currentColor; animation: spin 0.8s linear infinite; }
         @keyframes spin { to { transform: rotate(360deg); } }
         
-        /* Payment Details Section Styles */
         .payment-details-box { background: #fff8e7; border: 2px solid #c8a45c; border-radius: 20px; padding: 1.2rem 1.5rem; margin: 1rem 0; }
         .payment-details-box h4 { color: #a0784c; margin-bottom: 12px; font-size: 1rem; display: flex; align-items: center; gap: 8px; }
         .bank-details { background: white; padding: 12px; border-radius: 12px; margin: 10px 0; font-family: monospace; font-size: 0.9rem; border-left: 4px solid #c8a45c; }
@@ -145,8 +145,8 @@
         .social-icon { display: inline-flex; align-items: center; justify-content: center; width: 45px; height: 45px; background: rgba(255,255,255,0.1); color: #c8a45c; border-radius: 50%; font-size: 1.3rem; transition: all 0.3s ease; text-decoration: none; cursor: pointer; }
         .social-icon:hover { background: #c8a45c; color: #1a1a1a; transform: translateY(-3px); }
 
-
-       @media (min-width: 1440px) {
+       
+        @media (min-width: 1440px) {
             .hero-banner { 
                 height: 85vh;
                 min-height: 700px;
@@ -182,6 +182,8 @@
              } 
         }
 
+
+
         @media (max-width: 768px) {
             .products-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; padding: 0 1rem; }
             .hero-content h1 { font-size: 2rem; }
@@ -204,12 +206,16 @@
     <div class="cart-badge" id="cartBadge"><i class="fas fa-shopping-basket"></i><span class="cart-count" id="cartCount">0</span></div>
     <header class="header">
         <div class="header-container">
+            <a href="index.html" class="logo"><div class="logo-icon">S</div><span>Salameenah Concept</span></a>
+            <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Home</a>
         </div>
     </header>
     
     <section class="hero-banner">
         <div class="slideshow-container">
-            <div class="slide active" style="background-image: url('shoes-hero1.jpg');"><div class="hero-content"><h1>Premium Footwear</h1><p>Step out in style and comfort</p></div></div>
+            <div class="slide active" style="background-image: url('lace-hero1.jpg');"><div class="hero-content"><h1>Premium Lace Collection</h1><p>Exquisite lace fabrics for every occasion</p></div></div>
+            <div class="slide" style="background-image: url('lace-hero2.jpg');"><div class="hero-content"><h1>French & Swiss Lace</h1><p>Luxury imported lace materials</p></div></div>
+            <div class="slide" style="background-image: url('lace-hero3.jpg');"><div class="hero-content"><h1>Cord Lace</h1><p>Beautiful patterns for traditional wear</p></div></div>
         </div>
     </section>
     
@@ -217,7 +223,7 @@
         <p><i class="fas fa-info-circle"></i> <strong>Tip:</strong> Click on any product image to view in full size! <i class="fas fa-mouse-pointer"></i> <i class="fas fa-expand"></i> <span style="margin-left: 10px;"><strong>Zoom:</strong> Click image to zoom, use +/- buttons or mouse wheel</span></p>
     </div>
     
-    <div class="products-grid" id="productsGrid"><div style="text-align:center; padding:50px;"><i class="fas fa-spinner fa-pulse"></i> Loading products...</div></div>
+    <div class="products-grid" id="productsGrid"><div style="text-align:center; padding:50px;"><i class="fas fa-spinner fa-pulse"></i> Loading lace products...</div></div>
     
     <div class="clear-cart-section"><button class="btn-clear-cart" id="clearCartBtn"><i class="fas fa-trash-alt"></i> Clear Cart</button></div>
     <div class="notification-area"><div class="notification-message" id="notificationMessage"></div></div>
@@ -235,9 +241,18 @@
                 <a href="mailto:ummusalmamuhammad32@gmail.com" target="_blank" class="social-icon"><i class="fas fa-envelope"></i></a>
                 <a href="https://wa.me/+2348065512725/" target="_blank" class="social-icon"><i class="fab fa-whatsapp"></i></a></div><p>&copy; 2026 Salameenah Concept. All rights reserved.</p>
     </div>
-    </footer> 
+    </footer>
     
-    <div class="lightbox" id="lightbox"><span class="lightbox-close">&times;</span><img id="lightbox-img" src=""><div class="lightbox-caption" id="lightbox-caption"></div><div class="zoom-controls"><button class="zoom-btn" id="zoomInBtn"><i class="fas fa-search-plus"></i></button><button class="zoom-btn" id="zoomOutBtn"><i class="fas fa-search-minus"></i></button><button class="zoom-btn" id="zoomResetBtn"><i class="fas fa-undo-alt"></i></button></div></div>
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <img id="lightbox-img" src="" alt="">
+        <div class="lightbox-caption" id="lightbox-caption"></div>
+        <div class="zoom-controls">
+            <button class="zoom-btn" id="zoomInBtn"><i class="fas fa-search-plus"></i></button>
+            <button class="zoom-btn" id="zoomOutBtn"><i class="fas fa-search-minus"></i></button>
+            <button class="zoom-btn" id="zoomResetBtn"><i class="fas fa-undo-alt"></i></button>
+        </div>
+    </div>
     
     <div class="modal-overlay" id="checkoutModal">
         <div class="checkout-modal">
@@ -283,7 +298,7 @@
         // ===== CONFIGURATION - REPLACE WITH YOUR DEPLOYED GOOGLE SCRIPT URL =====
         const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwZ8_JF9ToPvEY-iQLkKNx_2XIb46mjfCz9CmlnV2IbWxEwDHJ4LZzSDPDCo5XjwMMv/exec";
         const GOOGLE_SHEETS_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vS4sl15pExcCu6LudOLLqK4clokRqrZjqBThg-dygvDbceOSHG_nn5tn9lBYoyYvMIdHThCCvuLapv9/pub?output=csv";
-        const currentPage = 'shoes';
+        const currentPage = 'lace';
         const WHATSAPP_NUMBER = "+2348065512725";
         
         let currentProducts = [];
@@ -317,7 +332,7 @@
                 `*Items Ordered:*%0A${itemsList || 'No items'}%0A%0A` +
                 `*Total Amount: ₦${total.toLocaleString()}*%0A%0A` +
                 `*ATTACH YOUR PAYMENT PROOF/SCREENSHOT HERE*%0A%0A` +
-                `Thank you! We will confirm your payment within 2 hours.`;
+                `Thank you! We will confirm your payment within few minutes.`;
             
             const whatsappBtn = document.getElementById('whatsappProofBtn');
             if (whatsappBtn) {
@@ -357,7 +372,7 @@
         async function loadProductsFromSheet() {
             if (!GOOGLE_SHEETS_CSV_URL) { showNotification('Add Google Sheets URL'); return []; }
             try {
-                showNotification('📡 Loading products...');
+                showNotification('📡 Loading lace products...');
                 const response = await fetch(GOOGLE_SHEETS_CSV_URL);
                 const csvText = await response.text();
                 const rows = csvText.split('\n');
@@ -392,14 +407,17 @@
                         category: categoryIdx >= 0 ? (cols[categoryIdx] || 'Collection').trim() : 'Collection'
                     });
                 }
-                if (products.length > 0) showNotification(`Loaded ${products.length} products`);
+                if (products.length > 0) showNotification(`Loaded ${products.length} lace products`);
                 return products;
-            } catch (error) { showNotification(' Error loading products.'); return []; }
+            } catch (error) { showNotification('Error loading lace products.'); return []; }
         }
         
         function renderProducts(productsArray) {
             const grid = document.getElementById('productsGrid');
-            if (!productsArray.length) { grid.innerHTML = '<div style="text-align:center; padding:50px;">No products found. Add to your Google Sheet!</div>'; return; }
+            if (!productsArray.length) {
+                grid.innerHTML = '<div style="text-align:center; padding:50px;">No lace products found. Add products with page="lace" to your Google Sheet!</div>';
+                return;
+            }
             grid.innerHTML = productsArray.map(p => {
                 const isOutOfStock = p.stock_status === 'out-of-stock';
                 const stockClass = isOutOfStock ? 'out-stock' : 'in-stock';

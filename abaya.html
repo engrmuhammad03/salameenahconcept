@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Shoes Collection | Salameenah Concept</title>
+    <title>Abaya Collection | Salameenah Concept</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -146,7 +146,7 @@
         .social-icon:hover { background: #c8a45c; color: #1a1a1a; transform: translateY(-3px); }
 
 
-       @media (min-width: 1440px) {
+         @media (min-width: 1440px) {
             .hero-banner { 
                 height: 85vh;
                 min-height: 700px;
@@ -182,6 +182,7 @@
              } 
         }
 
+
         @media (max-width: 768px) {
             .products-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; padding: 0 1rem; }
             .hero-content h1 { font-size: 2rem; }
@@ -204,12 +205,16 @@
     <div class="cart-badge" id="cartBadge"><i class="fas fa-shopping-basket"></i><span class="cart-count" id="cartCount">0</span></div>
     <header class="header">
         <div class="header-container">
+            <a href="index.html" class="logo"><div class="logo-icon">S</div><span>Salameenah Concept</span></a>
+            <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Home</a>
         </div>
     </header>
     
     <section class="hero-banner">
         <div class="slideshow-container">
-            <div class="slide active" style="background-image: url('shoes-hero1.jpg');"><div class="hero-content"><h1>Premium Footwear</h1><p>Step out in style and comfort</p></div></div>
+            <div class="slide active" style="background-image: url('abaya-hero1.jpg');"><div class="hero-content"><h1>Luxury Abayas</h1><p>Elegant modest wear for every occasion</p></div></div>
+            <div class="slide" style="background-image: url('abaya-hero2.jpg');"><div class="hero-content"><h1>Premium Collection</h1><p>High-quality fabrics and designs</p></div></div>
+            <div class="slide" style="background-image: url('abaya-hero3.jpg');"><div class="hero-content"><h1>Evening Abayas</h1><p>Perfect for special occasions</p></div></div>
         </div>
     </section>
     
@@ -228,16 +233,25 @@
         </div>
     </div>
     
-         <footer class="footer">
+        <footer class="footer">
         <div class="footer-content">
             <div class="social-icons">
                 <a href="https://www.instagram.com/salameenah.concept/" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
                 <a href="mailto:ummusalmamuhammad32@gmail.com" target="_blank" class="social-icon"><i class="fas fa-envelope"></i></a>
                 <a href="https://wa.me/+2348065512725/" target="_blank" class="social-icon"><i class="fab fa-whatsapp"></i></a></div><p>&copy; 2026 Salameenah Concept. All rights reserved.</p>
     </div>
-    </footer> 
+    </footer>
     
-    <div class="lightbox" id="lightbox"><span class="lightbox-close">&times;</span><img id="lightbox-img" src=""><div class="lightbox-caption" id="lightbox-caption"></div><div class="zoom-controls"><button class="zoom-btn" id="zoomInBtn"><i class="fas fa-search-plus"></i></button><button class="zoom-btn" id="zoomOutBtn"><i class="fas fa-search-minus"></i></button><button class="zoom-btn" id="zoomResetBtn"><i class="fas fa-undo-alt"></i></button></div></div>
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <img id="lightbox-img" src="" alt="">
+        <div class="lightbox-caption" id="lightbox-caption"></div>
+        <div class="zoom-controls">
+            <button class="zoom-btn" id="zoomInBtn"><i class="fas fa-search-plus"></i></button>
+            <button class="zoom-btn" id="zoomOutBtn"><i class="fas fa-search-minus"></i></button>
+            <button class="zoom-btn" id="zoomResetBtn"><i class="fas fa-undo-alt"></i></button>
+        </div>
+    </div>
     
     <div class="modal-overlay" id="checkoutModal">
         <div class="checkout-modal">
@@ -256,6 +270,7 @@
                         </select>
                     </div>
                     
+                    <!-- Bank Transfer Payment Details Section -->
                     <div id="paymentDetailsBox" class="payment-details-box" style="display: none;">
                         <h4><i class="fas fa-university"></i> Bank Transfer Details</h4>
                         <div class="bank-details">
@@ -280,16 +295,25 @@
     </div>
 
     <script>
-        // ===== CONFIGURATION - REPLACE WITH YOUR DEPLOYED GOOGLE SCRIPT URL =====
+        // ===== GOOGLE APPS SCRIPT URL - REPLACE WITH YOUR DEPLOYMENT URL =====
+        // IMPORTANT: Create a Google Apps Script and deploy as Web App, then paste the URL below
         const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwZ8_JF9ToPvEY-iQLkKNx_2XIb46mjfCz9CmlnV2IbWxEwDHJ4LZzSDPDCo5XjwMMv/exec";
+        
+        // ===== GOOGLE SHEETS CSV URL FOR PRODUCTS =====
         const GOOGLE_SHEETS_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vS4sl15pExcCu6LudOLLqK4clokRqrZjqBThg-dygvDbceOSHG_nn5tn9lBYoyYvMIdHThCCvuLapv9/pub?output=csv";
-        const currentPage = 'shoes';
+        
+        // WhatsApp number for payment proof submissions
         const WHATSAPP_NUMBER = "+2348065512725";
         
+        // Store owner email for notifications
+        const STORE_EMAIL = "ummusalmamuhammad32@gmail.com";
+        
+        const currentPage = 'abaya';
         let currentProducts = [];
         let cartCount = 0;
         let quantities = {};
         
+        // Helper function to copy text to clipboard
         window.copyToClipboard = function(text) {
             navigator.clipboard.writeText(text).then(() => {
                 showNotification("✓ Account number copied!");
@@ -298,6 +322,7 @@
             });
         };
         
+        // Function to update WhatsApp link with order details
         function updateWhatsAppLink() {
             const name = document.getElementById('customerName')?.value.trim() || '';
             const phone = document.getElementById('customerPhone')?.value.trim() || '';
@@ -317,7 +342,7 @@
                 `*Items Ordered:*%0A${itemsList || 'No items'}%0A%0A` +
                 `*Total Amount: ₦${total.toLocaleString()}*%0A%0A` +
                 `*ATTACH YOUR PAYMENT PROOF/SCREENSHOT HERE*%0A%0A` +
-                `Thank you! We will confirm your payment within 2 hours.`;
+                `Thank you! We will confirm your payment within few minutes.`;
             
             const whatsappBtn = document.getElementById('whatsappProofBtn');
             if (whatsappBtn) {
@@ -325,6 +350,7 @@
             }
         }
         
+        // Listen to form input changes to update WhatsApp link dynamically
         function bindPaymentFormListeners() {
             const fields = ['customerName', 'customerPhone', 'customerEmail', 'customerAddress'];
             fields.forEach(fieldId => {
@@ -336,6 +362,7 @@
             });
         }
         
+        // Toggle payment details visibility based on payment method
         const paymentMethodSelect = document.getElementById('paymentMethod');
         const paymentDetailsBox = document.getElementById('paymentDetailsBox');
         const manualPaymentAmountSpan = document.getElementById('manualPaymentAmount');
@@ -355,7 +382,10 @@
         }
         
         async function loadProductsFromSheet() {
-            if (!GOOGLE_SHEETS_CSV_URL) { showNotification('Add Google Sheets URL'); return []; }
+            if (!GOOGLE_SHEETS_CSV_URL) {
+                showNotification('Add Google Sheets URL to manage products!');
+                return [];
+            }
             try {
                 showNotification('📡 Loading products...');
                 const response = await fetch(GOOGLE_SHEETS_CSV_URL);
@@ -372,6 +402,7 @@
                 const categoryIdx = headers.findIndex(h => h.includes('category'));
                 const stockIdx = headers.findIndex(h => h.includes('stock'));
                 const pageIdx = headers.findIndex(h => h.includes('page'));
+                
                 const products = [];
                 for (let i = 1; i < rows.length; i++) {
                     if (!rows[i].trim()) continue;
@@ -394,27 +425,39 @@
                 }
                 if (products.length > 0) showNotification(`Loaded ${products.length} products`);
                 return products;
-            } catch (error) { showNotification(' Error loading products.'); return []; }
+            } catch (error) {
+                showNotification('Error loading products. Check CSV URL.');
+                return [];
+            }
         }
         
         function renderProducts(productsArray) {
             const grid = document.getElementById('productsGrid');
-            if (!productsArray.length) { grid.innerHTML = '<div style="text-align:center; padding:50px;">No products found. Add to your Google Sheet!</div>'; return; }
+            if (!productsArray.length) {
+                grid.innerHTML = '<div style="text-align:center; padding:50px;">No products found. Add to your Google Sheet!</div>';
+                return;
+            }
             grid.innerHTML = productsArray.map(p => {
-                const isOutOfStock = p.stock_status === 'out-of-stock';
+                const isOutOfStock = p.stock_status === 'out-of-stock' || p.stock_status === 'out_of_stock';
                 const stockClass = isOutOfStock ? 'out-stock' : 'in-stock';
                 const stockText = isOutOfStock ? 'Out of Stock' : 'In Stock';
                 const stockIcon = isOutOfStock ? '<i class="fas fa-times-circle"></i>' : '<i class="fas fa-check-circle"></i>';
                 const disabledAttr = isOutOfStock ? 'disabled' : '';
-                return `<div class="product-card" data-id="${p.id}">
-                    <div class="product-img" onclick="openLightbox('${p.image}', '${p.name.replace(/'/g, "\\'")}')"><img src="${p.image}" alt="${p.name}" onerror="this.src='https://placehold.co/400x400?text=${encodeURIComponent(p.name)}'"></div>
+                return `
+                <div class="product-card" data-id="${p.id}">
+                    <div class="product-img" onclick="openLightbox('${p.image}', '${p.name.replace(/'/g, "\\'")}')">
+                        <img src="${p.image}" alt="${p.name}" onerror="this.src='https://placehold.co/400x400?text=${encodeURIComponent(p.name)}'">
+                    </div>
                     <div class="product-info">
                         <div class="product-category">${p.category}</div>
                         <h3 class="product-title">${p.name}</h3>
                         <p class="product-desc">${p.desc}</p>
                         <div class="product-price">₦${p.price.toLocaleString()}</div>
                         <div class="product-stock ${stockClass}">${stockIcon} ${stockText}</div>
-                        <div class="details-section" id="details-${p.id}"><h4>Product Details</h4><p>${p.details}</p><h4>Specifications</h4><ul>${(p.specs || []).map(s => `<li>${s}</li>`).join('')}</ul></div>
+                        <div class="details-section" id="details-${p.id}">
+                            <h4>Product Details</h4><p>${p.details}</p>
+                            <h4>Specifications</h4><ul>${(p.specs || []).map(s => `<li>${s}</li>`).join('')}</ul>
+                        </div>
                     </div>
                     <div class="product-actions">
                         <button class="btn-view-details" onclick="toggleDetails(${p.id})">View Details <i class="fas fa-chevron-down"></i></button>
@@ -425,18 +468,21 @@
                                 <button class="qty-btn" onclick="updateQuantity(${p.id}, 1)" ${disabledAttr}>+</button>
                                 <button class="qty-btn delete-btn" onclick="deleteSelectedItem(${p.id})" ${disabledAttr}><i class="fas fa-trash"></i></button>
                             </div>
-                            <button class="btn-add-cart ${isOutOfStock ? 'disabled' : ''}" onclick="${isOutOfStock ? '' : `addToCartWithQuantity(${p.id}, '${p.name.replace(/'/g, "\\'")}', ${p.price})`}" ${disabledAttr}><i class="fas fa-shopping-basket"></i> ${isOutOfStock ? 'Out of Stock' : 'Add to Cart'}</button>
+                            <button class="btn-add-cart ${isOutOfStock ? 'disabled' : ''}" onclick="${isOutOfStock ? '' : `addToCartWithQuantity(${p.id}, '${p.name.replace(/'/g, "\\'")}', ${p.price})`}" ${disabledAttr}>
+                                <i class="fas fa-shopping-basket"></i> ${isOutOfStock ? 'Out of Stock' : 'Add to Cart'}
+                            </button>
                         </div>
                     </div>
-                </div>`;
-            }).join('');
+                </div>
+            `}).join('');
             for(let i=1; i<=productsArray.length; i++) if(!quantities[i]) quantities[i]=1;
         }
         
         function updateQuantity(productId, change) {
             const product = currentProducts.find(p => p.id === productId);
-            if (product && product.stock_status === 'out-of-stock') return;
-            const newQty = Math.max(1, (quantities[productId] || 1) + change);
+            if (product && (product.stock_status === 'out-of-stock')) return;
+            const currentQty = quantities[productId] || 1;
+            const newQty = Math.max(1, currentQty + change);
             quantities[productId] = newQty;
             const qtyEl = document.getElementById(`qty-${productId}`);
             if (qtyEl) qtyEl.innerText = newQty;
@@ -462,12 +508,18 @@
         window.toggleDetails = function(id) {
             const div = document.getElementById(`details-${id}`);
             const btn = document.querySelector(`.product-card[data-id="${id}"] .btn-view-details i`);
-            if (div && btn) { div.classList.toggle('open'); btn.className = div.classList.contains('open') ? 'fas fa-chevron-up' : 'fas fa-chevron-down'; }
+            if (div && btn) {
+                div.classList.toggle('open');
+                btn.className = div.classList.contains('open') ? 'fas fa-chevron-up' : 'fas fa-chevron-down';
+            }
         };
         
         window.addToCartWithQuantity = function(id, name, price) {
             const product = currentProducts.find(p => p.id === id);
-            if (product && product.stock_status === 'out-of-stock') { showNotification(`${name} is out of stock!`); return; }
+            if (product && product.stock_status === 'out-of-stock') {
+                showNotification(`${name} is out of stock!`);
+                return;
+            }
             const quantity = quantities[id] || 1;
             addToCart(id, name, price, quantity);
             quantities[id] = 1;
@@ -487,7 +539,15 @@
             refreshOrderSummary(); updatePaymentDetailsVisibility();
         }
         
-        function clearCart() { if(cartCount > 0 && confirm('Clear your entire cart?')) { localStorage.removeItem('cart'); cartCount = 0; updateCartUI(); refreshOrderSummary(); updatePaymentDetailsVisibility(); showNotification('Cart cleared!'); } }
+        function clearCart() {
+            if(cartCount > 0 && confirm('Clear your entire cart?')) {
+                localStorage.removeItem('cart');
+                cartCount = 0;
+                updateCartUI(); refreshOrderSummary(); updatePaymentDetailsVisibility();
+                showNotification('Cart cleared!');
+            }
+        }
+        
         document.getElementById('clearCartBtn').addEventListener('click', clearCart);
         function updateCartUI() { document.getElementById('cartCount').innerText = cartCount; }
         function loadCartCount() { const cart = JSON.parse(localStorage.getItem('cart') || '[]'); cartCount = cart.reduce((s,i) => s + i.quantity, 0); updateCartUI(); }
@@ -506,7 +566,14 @@
                 showNotification('Cart updated');
             }
         }
-        function deleteCartItem(id) { let cart = JSON.parse(localStorage.getItem('cart') || '[]'); cart = cart.filter(i => i.id !== id); localStorage.setItem('cart', JSON.stringify(cart)); cartCount = cart.reduce((s,i) => s + i.quantity, 0); updateCartUI(); refreshOrderSummary(); updatePaymentDetailsVisibility(); showNotification('Item removed'); }
+        function deleteCartItem(id) {
+            let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            cart = cart.filter(i => i.id !== id);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            cartCount = cart.reduce((s,i) => s + i.quantity, 0);
+            updateCartUI(); refreshOrderSummary(); updatePaymentDetailsVisibility();
+            showNotification('Item removed');
+        }
         window.updateCartItemQuantity = updateCartItemQuantity;
         window.deleteCartItem = deleteCartItem;
         
@@ -514,7 +581,10 @@
         const checkoutBtn = document.getElementById('checkoutBtn');
         const closeModalBtn = document.getElementById('closeModalBtn');
         function openModal() { 
-            if(JSON.parse(localStorage.getItem('cart') || '[]').length === 0) { showNotification("Your basket is empty!"); return; } 
+            if(JSON.parse(localStorage.getItem('cart') || '[]').length === 0) { 
+                showNotification("Your basket is empty!"); 
+                return; 
+            } 
             updatePaymentDetailsVisibility();
             bindPaymentFormListeners();
             updateWhatsAppLink();
@@ -531,7 +601,15 @@
             const div = document.getElementById('summaryItemsList');
             if(cart.length === 0) { div.innerHTML = '<p style="color:#a0784c;">Your basket is empty.</p>'; document.getElementById('summaryTotal').innerHTML = 'Total: ₦0'; return; }
             let html = '', total = 0;
-            cart.forEach(item => { const itemTotal = item.price * item.quantity; total += itemTotal; html += `<div class="summary-item"><div class="summary-item-info"><strong>${item.name}</strong><br><small>₦${item.price.toLocaleString()} each</small></div><div class="summary-item-controls"><button class="cart-qty-btn" onclick="updateCartItemQuantity(${item.id}, -1)">-</button><span class="cart-qty-value">${item.quantity}</span><button class="cart-qty-btn" onclick="updateCartItemQuantity(${item.id}, 1)">+</button><button class="cart-delete-btn" onclick="deleteCartItem(${item.id})"><i class="fas fa-trash"></i></button></div><div class="summary-item-price">₦${itemTotal.toLocaleString()}</div></div>`; });
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                html += `<div class="summary-item"><div class="summary-item-info"><strong>${item.name}</strong><br><small>₦${item.price.toLocaleString()} each</small></div>
+                        <div class="summary-item-controls"><button class="cart-qty-btn" onclick="updateCartItemQuantity(${item.id}, -1)">-</button>
+                        <span class="cart-qty-value">${item.quantity}</span><button class="cart-qty-btn" onclick="updateCartItemQuantity(${item.id}, 1)">+</button>
+                        <button class="cart-delete-btn" onclick="deleteCartItem(${item.id})"><i class="fas fa-trash"></i></button></div>
+                        <div class="summary-item-price">₦${itemTotal.toLocaleString()}</div></div>`;
+            });
             div.innerHTML = html;
             document.getElementById('summaryTotal').innerHTML = `Total: ₦${total.toLocaleString()}`;
             if(manualPaymentAmountSpan) manualPaymentAmountSpan.innerText = `₦${total.toLocaleString()}`;
@@ -539,6 +617,7 @@
         
         const form = document.getElementById('checkoutForm');
         const submitBtn = document.getElementById('submitOrderBtn');
+        
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
             const name = document.getElementById('customerName').value.trim();
@@ -547,11 +626,23 @@
             const address = document.getElementById('customerAddress').value.trim();
             const payment = document.getElementById('paymentMethod').value;
             const notes = document.getElementById('orderNotes').value.trim();
-            if(!name || !phone || !email || !address) { showNotification("Please fill in all required fields"); return; }
+            
+            if(!name || !phone || !email || !address) { 
+                showNotification("Please fill in all required fields"); 
+                return; 
+            }
+            
             const cart = JSON.parse(localStorage.getItem('cart') || '[]');
-            if(cart.length === 0) { showNotification("Your basket is empty"); return; }
+            if(cart.length === 0) { 
+                showNotification("Your basket is empty"); 
+                return; 
+            }
+            
             let total = 0;
-            const itemsList = cart.map(item => { total += item.price * item.quantity; return `${item.name} (Qty:${item.quantity}) - ₦${(item.price*item.quantity).toLocaleString()}`; }).join('\n');
+            const itemsList = cart.map(item => { 
+                total += item.price * item.quantity; 
+                return `${item.name} (Qty:${item.quantity}) - ₦${(item.price*item.quantity).toLocaleString()}`; 
+            }).join('\n');
             
             const orderData = { 
                 requestType: "order",
@@ -564,27 +655,53 @@
                 orderNotes: notes, 
                 items: itemsList, 
                 totalAmount: `₦${total.toLocaleString()}`, 
-                pageSource: window.location.href 
+                totalRaw: total,
+                pageSource: window.location.href,
+                customerEmailForReceipt: email
             };
-            submitBtn.disabled = true; submitBtn.innerHTML = '<span class="loading-spinner"></span> Submitting Order...';
+            
+            submitBtn.disabled = true; 
+            submitBtn.innerHTML = '<span class="loading-spinner"></span> Submitting Order...';
+            
             try {
-                await fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(orderData) });
+                const response = await fetch(SCRIPT_URL, { 
+                    method: 'POST', 
+                    mode: 'no-cors', 
+                    headers: { 'Content-Type': 'application/json' }, 
+                    body: JSON.stringify(orderData) 
+                });
+                
                 showNotification("Order placed! Check your email for confirmation.");
+                
                 if(payment === 'Bank Transfer') {
                     showNotification(`Transfer ₦${total.toLocaleString()} and click WhatsApp button to send proof.`);
                     updateWhatsAppLink();
                 }
-                localStorage.removeItem('cart'); cartCount = 0; updateCartUI(); closeModal(); form.reset(); refreshOrderSummary();
-            } catch(error) { showNotification("Order failed. Please contact us directly."); }
-            finally { submitBtn.disabled = false; submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Place Order'; }
+                
+                localStorage.removeItem('cart'); 
+                cartCount = 0; 
+                updateCartUI(); 
+                closeModal(); 
+                form.reset(); 
+                refreshOrderSummary();
+                
+            } catch(error) { 
+                showNotification("Order failed. Please contact us directly."); 
+                console.error(error);
+            }
+            finally { 
+                submitBtn.disabled = false; 
+                submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Place Order'; 
+            }
         });
         
-        // Lightbox Zoom
+        // Zoomable Lightbox
         let currentZoom = 1;
         const minZoom = 1, maxZoom = 3, zoomStep = 0.25;
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightbox-img');
         const lightboxCaption = document.getElementById('lightbox-caption');
+        
         function updateZoom() { if(lightboxImg) { lightboxImg.style.transform = `scale(${currentZoom})`; if(currentZoom > 1) lightbox.classList.add('zoomed'); else lightbox.classList.remove('zoomed'); } }
         function zoomIn() { if(currentZoom < maxZoom) { currentZoom = Math.min(maxZoom, currentZoom + zoomStep); updateZoom(); } }
         function zoomOut() { if(currentZoom > minZoom) { currentZoom = Math.max(minZoom, currentZoom - zoomStep); updateZoom(); } }
@@ -609,7 +726,13 @@
         function nextSlide() { currentSlide++; if(currentSlide >= slides.length) currentSlide = 0; showSlide(currentSlide); }
         if(slides.length > 0) { slides[0].classList.add('active'); slideInterval = setInterval(nextSlide, 5000); }
         
-        async function init() { currentProducts = await loadProductsFromSheet(); renderProducts(currentProducts); loadCartCount(); for(let i=1; i<=currentProducts.length; i++) if(!quantities[i]) quantities[i]=1; if(paymentMethodSelect) updatePaymentDetailsVisibility(); }
+        async function init() {
+            currentProducts = await loadProductsFromSheet();
+            renderProducts(currentProducts);
+            loadCartCount();
+            for(let i=1; i<=currentProducts.length; i++) if(!quantities[i]) quantities[i]=1;
+            if(paymentMethodSelect) updatePaymentDetailsVisibility();
+        }
         init();
     </script>
 </body>

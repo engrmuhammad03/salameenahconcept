@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Shoes Collection | Salameenah Concept</title>
+    <title>Bags Collection | Salameenah Concept</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        /* Same CSS as atamfa.html - identical styles */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Segoe UI', 'Inter', system-ui, sans-serif; background: #faf7f2; color: #1a1a1a; line-height: 1.6; overflow-x: hidden; }
         .header { background: #1a1a1a; color: white; padding: 1rem 2rem; position: sticky; top: 0; z-index: 100; }
@@ -146,7 +147,7 @@
         .social-icon:hover { background: #c8a45c; color: #1a1a1a; transform: translateY(-3px); }
 
 
-       @media (min-width: 1440px) {
+         @media (min-width: 1440px) {
             .hero-banner { 
                 height: 85vh;
                 min-height: 700px;
@@ -182,6 +183,7 @@
              } 
         }
 
+
         @media (max-width: 768px) {
             .products-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; padding: 0 1rem; }
             .hero-content h1 { font-size: 2rem; }
@@ -204,12 +206,16 @@
     <div class="cart-badge" id="cartBadge"><i class="fas fa-shopping-basket"></i><span class="cart-count" id="cartCount">0</span></div>
     <header class="header">
         <div class="header-container">
+            <a href="index.html" class="logo"><div class="logo-icon">S</div><span>Salameenah Concept</span></a>
+            <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Home</a>
         </div>
     </header>
     
     <section class="hero-banner">
         <div class="slideshow-container">
-            <div class="slide active" style="background-image: url('shoes-hero1.jpg');"><div class="hero-content"><h1>Premium Footwear</h1><p>Step out in style and comfort</p></div></div>
+            <div class="slide active" style="background-image: url('bags-hero1.jpg');"><div class="hero-content"><h1>Luxury Bags Collection</h1><p>Exquisite handcrafted bags for every occasion</p></div></div>
+            <div class="slide" style="background-image: url('bags-hero2.jpg');"><div class="hero-content"><h1>Trendy Crossbody Bags</h1><p>Style meets functionality</p></div></div>
+            <div class="slide" style="background-image: url('bags-hero3.jpg');"><div class="hero-content"><h1>Premium Messenger Bags</h1><p>Professional style for the modern gentleman</p></div></div>
         </div>
     </section>
     
@@ -227,16 +233,16 @@
             <button class="btn-checkout" id="checkoutBtn"><i class="fas fa-shopping-cart"></i> Proceed to Checkout <i class="fas fa-arrow-right"></i></button>
         </div>
     </div>
-    
-         <footer class="footer">
+
+     <footer class="footer">
         <div class="footer-content">
             <div class="social-icons">
                 <a href="https://www.instagram.com/salameenah.concept/" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
                 <a href="mailto:ummusalmamuhammad32@gmail.com" target="_blank" class="social-icon"><i class="fas fa-envelope"></i></a>
-                <a href="https://wa.me/+2348065512725/" target="_blank" class="social-icon"><i class="fab fa-whatsapp"></i></a></div><p>&copy; 2026 Salameenah Concept. All rights reserved.</p>
+        <a href="https://wa.me/+2348065512725/" target="_blank" class="social-icon"><i class="fab fa-whatsapp"></i></a></div><p>&copy; 2026 Salameenah Concept. All rights reserved.</p>
     </div>
-    </footer> 
-    
+    </footer>
+
     <div class="lightbox" id="lightbox"><span class="lightbox-close">&times;</span><img id="lightbox-img" src=""><div class="lightbox-caption" id="lightbox-caption"></div><div class="zoom-controls"><button class="zoom-btn" id="zoomInBtn"><i class="fas fa-search-plus"></i></button><button class="zoom-btn" id="zoomOutBtn"><i class="fas fa-search-minus"></i></button><button class="zoom-btn" id="zoomResetBtn"><i class="fas fa-undo-alt"></i></button></div></div>
     
     <div class="modal-overlay" id="checkoutModal">
@@ -256,6 +262,7 @@
                         </select>
                     </div>
                     
+                    <!-- Bank Transfer Payment Details Section -->
                     <div id="paymentDetailsBox" class="payment-details-box" style="display: none;">
                         <h4><i class="fas fa-university"></i> Bank Transfer Details</h4>
                         <div class="bank-details">
@@ -283,7 +290,7 @@
         // ===== CONFIGURATION - REPLACE WITH YOUR DEPLOYED GOOGLE SCRIPT URL =====
         const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwZ8_JF9ToPvEY-iQLkKNx_2XIb46mjfCz9CmlnV2IbWxEwDHJ4LZzSDPDCo5XjwMMv/exec";
         const GOOGLE_SHEETS_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vS4sl15pExcCu6LudOLLqK4clokRqrZjqBThg-dygvDbceOSHG_nn5tn9lBYoyYvMIdHThCCvuLapv9/pub?output=csv";
-        const currentPage = 'shoes';
+        const currentPage = 'bags';
         const WHATSAPP_NUMBER = "+2348065512725";
         
         let currentProducts = [];
@@ -317,7 +324,7 @@
                 `*Items Ordered:*%0A${itemsList || 'No items'}%0A%0A` +
                 `*Total Amount: ₦${total.toLocaleString()}*%0A%0A` +
                 `*ATTACH YOUR PAYMENT PROOF/SCREENSHOT HERE*%0A%0A` +
-                `Thank you! We will confirm your payment within 2 hours.`;
+                `Thank you! We will confirm your payment within few minutes.`;
             
             const whatsappBtn = document.getElementById('whatsappProofBtn');
             if (whatsappBtn) {
@@ -394,7 +401,7 @@
                 }
                 if (products.length > 0) showNotification(`Loaded ${products.length} products`);
                 return products;
-            } catch (error) { showNotification(' Error loading products.'); return []; }
+            } catch (error) { showNotification('Error loading products.'); return []; }
         }
         
         function renderProducts(productsArray) {

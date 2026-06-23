@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Shoes Collection | Salameenah Concept</title>
+    <title>Men's Clothing | Salameenah Concept</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -145,8 +145,7 @@
         .social-icon { display: inline-flex; align-items: center; justify-content: center; width: 45px; height: 45px; background: rgba(255,255,255,0.1); color: #c8a45c; border-radius: 50%; font-size: 1.3rem; transition: all 0.3s ease; text-decoration: none; cursor: pointer; }
         .social-icon:hover { background: #c8a45c; color: #1a1a1a; transform: translateY(-3px); }
 
-
-       @media (min-width: 1440px) {
+         @media (min-width: 1440px) {
             .hero-banner { 
                 height: 85vh;
                 min-height: 700px;
@@ -182,6 +181,7 @@
              } 
         }
 
+
         @media (max-width: 768px) {
             .products-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; padding: 0 1rem; }
             .hero-content h1 { font-size: 2rem; }
@@ -204,17 +204,19 @@
     <div class="cart-badge" id="cartBadge"><i class="fas fa-shopping-basket"></i><span class="cart-count" id="cartCount">0</span></div>
     <header class="header">
         <div class="header-container">
+            <a href="index.html" class="logo"><div class="logo-icon">S</div><span>Salameenah Concept</span></a>
+            <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Home</a>
         </div>
     </header>
     
     <section class="hero-banner">
         <div class="slideshow-container">
-            <div class="slide active" style="background-image: url('shoes-hero1.jpg');"><div class="hero-content"><h1>Premium Footwear</h1><p>Step out in style and comfort</p></div></div>
+            <div class="slide active" style="background-image: url('men-clothing-hero1.jpg');"><div class="hero-content"><h1>Men's Collection</h1><p>Premium traditional and modern wear</p></div></div>
         </div>
     </section>
     
     <div class="clickable-info">
-        <p><i class="fas fa-info-circle"></i> <strong>Tip:</strong> Click on any product image to view in full size! <i class="fas fa-mouse-pointer"></i> <i class="fas fa-expand"></i> <span style="margin-left: 10px;"><strong>Zoom:</strong> Click image to zoom, use +/- buttons or mouse wheel</span></p>
+        <p><i class="fas fa-info-circle"></i> <strong> Tip:</strong> Click on any product image to view in full size! <i class="fas fa-mouse-pointer"></i> <i class="fas fa-expand"></i> <span style="margin-left: 10px;"> <strong>Zoom:</strong> Click image to zoom, use +/- buttons or mouse wheel</span></p>
     </div>
     
     <div class="products-grid" id="productsGrid"><div style="text-align:center; padding:50px;"><i class="fas fa-spinner fa-pulse"></i> Loading products...</div></div>
@@ -228,14 +230,14 @@
         </div>
     </div>
     
-         <footer class="footer">
+    <footer class="footer">
         <div class="footer-content">
             <div class="social-icons">
                 <a href="https://www.instagram.com/salameenah.concept/" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
                 <a href="mailto:ummusalmamuhammad32@gmail.com" target="_blank" class="social-icon"><i class="fas fa-envelope"></i></a>
-                <a href="https://wa.me/+2348065512725/" target="_blank" class="social-icon"><i class="fab fa-whatsapp"></i></a></div><p>&copy; 2026 Salameenah Concept. All rights reserved.</p>
+        <a href="https://wa.me/+2348065512725/" target="_blank" class="social-icon"><i class="fab fa-whatsapp"></i></a></div><p>&copy; 2026 Salameenah Concept. All rights reserved.</p>
     </div>
-    </footer> 
+    </footer>
     
     <div class="lightbox" id="lightbox"><span class="lightbox-close">&times;</span><img id="lightbox-img" src=""><div class="lightbox-caption" id="lightbox-caption"></div><div class="zoom-controls"><button class="zoom-btn" id="zoomInBtn"><i class="fas fa-search-plus"></i></button><button class="zoom-btn" id="zoomOutBtn"><i class="fas fa-search-minus"></i></button><button class="zoom-btn" id="zoomResetBtn"><i class="fas fa-undo-alt"></i></button></div></div>
     
@@ -251,8 +253,8 @@
                     <div class="form-group"><label><i class="fas fa-map-marker-alt"></i> Delivery Address *</label><textarea id="customerAddress" rows="2" required placeholder="Street, city, landmark..."></textarea></div>
                     <div class="form-group"><label><i class="fas fa-credit-card"></i> Payment Method</label>
                         <select id="paymentMethod">
-                            <option value="Bank Transfer">Bank Transfer (Pay & Send Proof on WhatsApp)</option>
-                            <option value="Cash on Delivery">Cash on Delivery</option>
+                            <option value="Bank Transfer"> Bank Transfer (Pay & Send Proof on WhatsApp)</option>
+                            <option value="Cash on Delivery"> Cash on Delivery</option>
                         </select>
                     </div>
                     
@@ -283,7 +285,7 @@
         // ===== CONFIGURATION - REPLACE WITH YOUR DEPLOYED GOOGLE SCRIPT URL =====
         const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwZ8_JF9ToPvEY-iQLkKNx_2XIb46mjfCz9CmlnV2IbWxEwDHJ4LZzSDPDCo5XjwMMv/exec";
         const GOOGLE_SHEETS_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vS4sl15pExcCu6LudOLLqK4clokRqrZjqBThg-dygvDbceOSHG_nn5tn9lBYoyYvMIdHThCCvuLapv9/pub?output=csv";
-        const currentPage = 'shoes';
+        const currentPage = 'men';
         const WHATSAPP_NUMBER = "+2348065512725";
         
         let currentProducts = [];
@@ -317,7 +319,7 @@
                 `*Items Ordered:*%0A${itemsList || 'No items'}%0A%0A` +
                 `*Total Amount: ₦${total.toLocaleString()}*%0A%0A` +
                 `*ATTACH YOUR PAYMENT PROOF/SCREENSHOT HERE*%0A%0A` +
-                `Thank you! We will confirm your payment within 2 hours.`;
+                `Thank you! We will confirm your payment within few minutes.`;
             
             const whatsappBtn = document.getElementById('whatsappProofBtn');
             if (whatsappBtn) {
@@ -575,7 +577,7 @@
                     updateWhatsAppLink();
                 }
                 localStorage.removeItem('cart'); cartCount = 0; updateCartUI(); closeModal(); form.reset(); refreshOrderSummary();
-            } catch(error) { showNotification("Order failed. Please contact us directly."); }
+            } catch(error) { showNotification("⚠️ Order failed. Please contact us directly."); }
             finally { submitBtn.disabled = false; submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Place Order'; }
         });
         
